@@ -19,54 +19,8 @@
 	<h1>Salary Calculator</h1>
 
 	<div ng-controller="SalaryCalculatorController" >
-		<!--
-		<div class="sal-results col-sm-3 col-sm-offset-2">
-			<div>
-				<h5>Hourly Rate</h5>
-				<h4>{{ sal.hourly  | currency}}</h4>
-			</div>
-			<div>
-				<h5>Weekly Rate</h5>
-				<h4>{{ sal.weekly  | currency}}</h4>
-			</div>
-			<div>
-				<h5>Annual Rate</h5>
-				<h4>{{ sal.annual  | currency}}</h4>
-			</div>
-		</div>
-		-->
-		<div class="col-sm-6 input-sm">
-			<div class="form-group">
-				<label class="control-label">Hourly Rate</label>
-				<div class="">
-					<input type="text" class="form-control" fro-integer ng-model="sal.hourly" ng-change="calculateByHour()"/>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="control-label">Annual Rate</label>
-				<div class="">
-					<input type="text" class="form-control" fro-integer ng-model="sal.annual" ng-change="calculateByYear()"/>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label">Hours per Day</label>
-				<div class="">
-					<input type="text" class="form-control" fro-integer ng-model="sal.hoursPerDay" ng-change="calculateByHour()"/>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label">Days per Week</label>
-				<div class="">
-					<input type="text" class="form-control" fro-integer ng-model="sal.daysPerWeek" ng-change="calculateByHour()"/>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="col-sm-6">
+		
+		<div class="col-sm-5 col-sm-offset-1">
 			<table class="table">
 				<thead>
 					<tr>
@@ -102,6 +56,41 @@
 				</tbody>
 			</table>
 		</div>
+
+
+		<div class="col-sm-5 input-sm">
+
+			<div class="form-group">
+				<label class="control-label">Hourly Rate</label>
+				<div class="">
+					<input type="text" class="form-control" fro-integer ng-model="sal.hourly" ng-change="calculateByHour()"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label">Annual Rate</label>
+				<div class="">
+					<input type="text" class="form-control" fro-integer ng-model="sal.annual" ng-change="calculateByYear()"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Hours per Day</label>
+				<div class="">
+					<input type="text" class="form-control" fro-integer ng-model="sal.hoursPerDay" ng-change="calculateByHour()"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Days per Week</label>
+				<div class="">
+					<input type="text" class="form-control" fro-integer ng-model="sal.daysPerWeek" ng-change="calculateByHour()"/>
+				</div>
+			</div>
+		</div>
+
+
+		
 		
 		
 

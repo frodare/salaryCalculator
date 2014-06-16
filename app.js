@@ -37,6 +37,10 @@ app.controller('SalaryCalculatorController', function ($scope) {
 		$scope.sal.hourly = round($scope.sal.hourly);
 	}
 
+	function roundAnnualRate() {
+		$scope.sal.annual = round($scope.sal.annual);
+	}
+
 	function calcBiMonthly() {
 		var sal = $scope.sal;
 		sal.bimonthly = round(sal.annual / 24);
@@ -52,13 +56,36 @@ app.controller('SalaryCalculatorController', function ($scope) {
 		sal.monthly = round(sal.annual / 12);
 	}
 
+	function calcNet(key){
+		var sal = $scope.sal,
+			tax = (sal.tax/100);
+		sal[key + 'Net'] = round(sal[key] - (sal[key] * tax));
+	}
+
+	function calcNets(){
+		calcNet('hourly');
+		calcNet('weekly');
+		calcNet('biweekly');
+		calcNet('bimonthly');
+		calcNet('monthly');
+		calcNet('annual');
+	}
+
+	function calcOthers() {
+		calcBiMonthly();
+		calcBiWeekly();
+		calcMonthly();
+		calcNets();
+	}
+
 	$scope.calculateByHour = function () {
 		var sal = $scope.sal;
 		sal.weekly = sal.hourly * sal.hoursPerDay * sal.daysPerWeek;
 		sal.annual = sal.weekly * 52;
-		calcBiMonthly();
-		calcBiWeekly();
-		calcMonthly();
+		roundAnnualRate();
+		calcOthers();
+		sal.setByHourly = true;
+		sal.setByAnnual = false;
 	};
 
 	$scope.calculateByYear = function () {
@@ -66,15 +93,16 @@ app.controller('SalaryCalculatorController', function ($scope) {
 		sal.weekly = sal.annual / sal.hoursPerDay / sal.daysPerWeek
 		sal.hourly = sal.weekly / 52;
 		roundHourlyRate();
-		calcBiMonthly();
-		calcBiWeekly();
-		calcMonthly();
+		calcOthers();
+		sal.setByHourly = false;
+		sal.setByAnnual = true;
 	};
 
 	$scope.sal = {
 		hourly: 10,
 		hoursPerDay: 8,
-		daysPerWeek: 5
+		daysPerWeek: 5,
+		tax: 20
 	};
 
 	$scope.calculateByHour();
